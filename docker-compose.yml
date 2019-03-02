@@ -1,0 +1,38 @@
+version: '3.1'
+
+services:
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "3;[r$K8(XXW/+BP="
+      MYSQL_DATABASE: cineclub
+      MYSQL_USER: cineclub
+      MYSQL_PASSWORD: W0àowZatsS3kret
+    ports:
+      - 3306:3306
+
+  cineclub:
+    build:
+      context: core
+      dockerfile: build/Dockerfile.base
+    command: ./manage.py runserver 0.0.0.0:8080
+    env_file: .env
+    ports:
+      - 1234:8080
+    restart: always
+    tty: true
+    user: ${UID}:${GID}
+    volumes:
+      - "./core/:/usr/src/app/"
+
+  bothandler:
+    build:
+      context: bothandler
+      dockerfile: build/Dockerfile.base
+    command: python the_bothandler.py
+    env_file: .env
+    restart: always
+    user: ${UID}:${GID}
+    volumes:
+      - "./bothandler/:/usr/src/app/"
