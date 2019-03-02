@@ -1,2 +1,2 @@
--e git://github.com/sieira/client_corleone.git#egg=client_corleone
+Client-Corleone
 requests
