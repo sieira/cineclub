@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cineclub.films'
+    'rest_framework',
+    'cineclub.apps',
+    'cineclub.apps.film',
 ]
 
 MIDDLEWARE = [
